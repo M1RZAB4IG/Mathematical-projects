@@ -1,0 +1,120 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class expectedInfectedComputers{
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("E(x) = np");
+		
+		System.out.println("Enter n value: ");
+        int n = scan.nextInt();
+        scan.nextLine();
+        
+        System.out.println("Enter p value: ");
+        float p = scan.nextFloat();
+        scan.nextLine();
+        
+        float expInfectedComputers = computersInfected(n,p);
+        
+        System.out.println("The expected number of computers that get infected is: = " + expInfectedComputers);
+        
+	}
+	
+	public static float computersInfected(float n,float p) {
+		return n* (float)p;
+	}
+}
+
+_____________________________________________________________________________________________________________________
+
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class expectedTime{
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Expected time taken to remove virus from whole network: ((n/nic)*p*fix)");
+		
+		System.out.println("Enter n value: ");
+        int n = scan.nextInt();
+        scan.nextLine();
+        
+        System.out.println("Enter p value: ");
+        float p = scan.nextFloat();
+        scan.nextLine();
+        
+        System.out.println("Enter number of infected computers: ");
+        int nic = scan.nextInt();
+        scan.nextLine();
+        
+        System.out.println("Enter number of computers to be fixed: ");
+        int fix = scan.nextInt();
+        scan.nextLine(); 
+        
+        float expTime = (n/nic)*p*fix;
+        
+        System.out.println("Expected time taken to remove virus from whole network: " + expTime + " days");
+	}
+		
+}
+
+_________________________________________________________________________________________________________________
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class infectedProbability{
+	
+	
+	 // Driver code
+    public static void main(String[] args)
+    {
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("Probability that each computer gets infected atleast once: 1 - (nCr * p^r * q^n-r)");
+    	
+    	System.out.println("Enter n value: ");
+    	int n = scan.nextInt();
+        scan.nextLine();
+        
+        System.out.println("Enter r value: ");
+        int r = scan.nextInt();
+        scan.nextLine();
+        
+        System.out.println("Enter p value: ");
+        float p = scan.nextFloat();
+        scan.nextLine();
+        
+        float probability = binomialProbability(n, r, p);
+          
+        System.out.println("R: " +r);
+        System.out.println("Number of computers: " +n);
+        System.out.println("P: " +p);
+        System.out.println("Probability that each computer gets infected atleast once: = " + (1-probability) );
+    }
+	
+	 static int nCr(int n, int r) {
+	        // Since nCr is same as nC(n-r)
+	        // To decrease number of iterations
+	        if (r > n / 2)
+	            r = n - r;
+	      
+	        int answer = 1;
+	        for (int i = 1; i <= r; i++) {
+	            answer *= (n - r + i);
+	            answer /= i;
+	        }
+	      
+	        return answer;
+	    }
+	 
+	 static float binomialProbability(int n, int r, float p)
+	    {
+	        return nCr(n, r) * (float)Math.pow(p, r) * 
+	                        (float)Math.pow(1 - p, n - r);
+	    }	      
+}
+
